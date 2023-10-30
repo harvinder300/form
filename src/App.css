@@ -1,0 +1,63 @@
+.centered {
+    display: flex;
+    justify-content: cente;
+    align-items: center;
+    height: 100vh;
+    /* Optional: Centers vertically within the viewport */
+}
+
+.blurry-background {
+    background-image: url('./H.png');
+    background-size: cover;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+}
+/* Add this to your CSS file */
+.toast-slide-in {
+    animation: slide-in 0.3s ease-in-out;
+  }
+  
+  @keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Add these styles to your CSS file or use a CSS-in-JS solution */
+/* Add these styles to your CSS file or use a CSS-in-JS solution */
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  
+  .dashboard-table th, .dashboard-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .dashboard-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .dashboard-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .dashboard-table tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  
+  
