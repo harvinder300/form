@@ -12,24 +12,6 @@ function ConsumerInfo() {
         consumerType: '',
     });
 
-    // const [submissionStatus, setSubmissionStatus] = useState('');
-
-    // const handleInputChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setFormData({ ...formData, [name]: value });
-    // };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     if (formData.consumerType) {
-    //         setSubmissionStatus('Data submitted successfully');
-    //         toast.success('Data submitted successfully');
-    //     } else {
-    //         setSubmissionStatus('Please fill out all required fields');
-    //         toast.error('Please fill out all required fields');
-    //     }
-    // };
-
     const [consumerTypeValid, setConsumerTypeValid] = useState(true);
     const consumerTypeRegex = /^(Individual|Firm\/Trust\/Company)$/;
 

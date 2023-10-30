@@ -1,53 +1,71 @@
 import React, { useState, useEffect } from 'react';
+import Table from 'react-bootstrap/Table';
 
 function DashBoardFirm() {
   const [FirmData, setFirmData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // This useEffect fetches data from the provided URL for firms
   useEffect(() => {
     fetch('http://localhost:5255/GetFirmDetails')
       .then((response) => response.json())
-      .then((data) => setFirmData(data))
-      .catch((error) => console.error('Error fetching firm data:', error));
+      .then((data) => {
+        setFirmData(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error('Error fetching firm data:', error);
+      });
   }, []);
 
-  if (FirmData.length === 0) {
-    return <p>Loading...</p>;
-  }
+  const renderTable = () => {
+    if (isLoading) {
+      return <p>Loading...</p>;
+    } else if (FirmData.length === 0) {
+      return <p>No data available.</p>;
+    } else {
+      // Define the table header
+      const tableHeader = (
+        <thead>
+          <tr>
+            <th>Serial Number</th>
+            <th>Signatory Name</th>
+            <th>Signatory Designation</th>
+            <th>Organization Type</th>
+            <th>Incorporation Date</th>
+            <th>GST Number</th>
+            <th>PAN REQUIRED</th>
+          </tr>
+        </thead>
+      );
 
-  // Define the table header
-  const tableHeader = (
-    <thead>
-      <tr>
-        <th style={{ border: '1px solid #000' }}>Signatory Name</th>
-        <th style={{ border: '1px solid #000' }}>Signatory Designation</th>
-        <th style={{ border: '1px solid #000' }}>Organization Type</th>
-        <th style={{ border: '1px solid #000' }}>Incorporation Date</th>
-        <th style={{ border: '1px solid #000' }}>GST Number</th>
-        <th style={{ border: '1px solid #000' }}>PAN REQUIRED</th>
-      </tr>
-    </thead>
-  );
+      // Generate rows from the firm data
+      const tableRows = FirmData.map((firm, index) => (
+        <tr key={index}>
+          <td>{index + 1}</td> {/* Serial number column */}
+          <td>{firm.signatoryName}</td>
+          <td>{firm.signatoryDesignation}</td>
+          <td>{firm.organizationType}</td>
+          <td>{firm.incorporationDate}</td>
+          <td>{firm.gstNumber}</td>
+          <td>{firm.panrequired}</td>
+        </tr>
+      ));
 
-  // Generate rows from the firm data
-  const tableRows = FirmData.map((firm) => (
-    <tr style={{ margin: '3px' }} key={firm.id}>
-      <td style={{ border: '1px solid #000' }}>{firm.SignatoryName}</td>
-      <td style={{ border: '1px solid #000' }}>{firm.SignatoryDesignation}</td>
-      <td style={{ border: '1px solid #000' }}>{firm.OrganizationType}</td>
-      <td style={{ border: '1px solid #000' }}>{firm.IncorporationDate}</td>
-      <td style={{ border: '1px solid #000' }}>{firm.GSTNumber}</td>
-      <td style={{ border: '1px solid #000' }}>{firm.PANREQUIRED}</td>
-    </tr>
-  ));
+      return (
+        <Table responsive striped bordered hover>
+          {tableHeader}
+          <tbody>{tableRows}</tbody>
+        </Table>
+      );
+    }
+  };
 
   return (
-    <div>
-      <h1>Firm Dashboard</h1>
-      <table style={{ border: '1px solid #000' }}>
-        {tableHeader}
-        <tbody>{tableRows}</tbody>
-      </table>
+    <div className="container mt-5">
+      <h1 className="text-center mb-4 display-4 font-weight-bold">Firm Dashboard</h1>
+      {renderTable()}
     </div>
   );
 }

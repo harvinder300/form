@@ -1,57 +1,73 @@
 import React, { useState, useEffect } from 'react';
+import Table from 'react-bootstrap/Table';
 
 function DashBoardTable() {
   const [DashBoards, setDashBoards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // This useEffect fetches data from the provided URL
   useEffect(() => {
     fetch('http://localhost:5255/api/Individual/GetUserDetails')
       .then((response) => response.json())
-      .then((data) => setDashBoards(data)) // No need to access 'DashBoards' property
-      .catch((error) => console.error('Error fetching data:', error));
+      .then((data) => {
+        setDashBoards(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.error('Error fetching data:', error);
+      });
   }, []);
-  if (DashBoards.length === 0) {
-    return <p>Loading...</p>;
-  }
 
-  // Define the table header
-  const tableHeader = (
-    <thead>
-      <tr>
+  const renderTable = () => {
+    if (isLoading) {
+      return <p>Loading...</p>;
+    } else if (DashBoards.length === 0) {
+      return <p>No data available.</p>;
+    } else {
+      // Define the table header
+      const tableHeader = (
+        <thead>
+          <tr>
+            <th>Serial Number</th>
+            <th>Consumer Type</th>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Relationship</th>
+            <th>Father/Husband</th>
+          </tr>
+        </thead>
+      );
 
-        <th style={{ border: '1px solid #000' }}>Consumer Type</th>
-        <th style={{ border: '1px solid #000' }}>Title</th>
-        <th style={{ border: '1px solid #000' }}>First Name</th>
-        <th style={{ border: '1px solid #000' }}>Middle Name</th>
-        <th style={{ border: '1px solid #000' }}>Last Name</th>
-        <th style={{ border: '1px solid #000' }}>RelationShip</th>
-        <th style={{ border: '1px solid #000' }}>Father/Husband</th>
-      </tr>
-    </thead>
-  );
-  if (DashBoards.length === 0) {
-    return <p>Loading...</p>;
-  }
-  // Generate rows from the product data
-  const tableRows = DashBoards.map((DashBoard) => (
-    <tr style={{ margin: '3px' }} key={DashBoard.id}>
-      <td style={{ border: '1px solid #000' }}>{DashBoard.consumerType}</td>
-      <td style={{ border: '1px solid #000' }}>{DashBoard.title}</td>
-      <td style={{ border: '1px solid #000' }}>{DashBoard.firstName}</td>
-      <td style={{ border: '1px solid #000' }}>{DashBoard.middleName}</td>
-      <td style={{ border: '1px solid #000' }}>{DashBoard.lastName}</td>
-      <td style={{ border: '1px solid #000' }}>{DashBoard.relationship}</td>
-      <td style={{ border: '1px solid #000' }}>{DashBoard.fathersName}</td>
-    </tr>
-  ));
+      // Generate rows from the data with serial numbers
+      const tableRows = DashBoards.map((DashBoard, index) => (
+        <tr key={DashBoard.id}>
+          <td>{index + 1}</td> {/* Serial Number */}
+          <td>{DashBoard.consumerType}</td>
+          <td>{DashBoard.title}</td>
+          <td>{DashBoard.firstName}</td>
+          <td>{DashBoard.middleName}</td>
+          <td>{DashBoard.lastName}</td>
+          <td>{DashBoard.relationship}</td>
+          <td>{DashBoard.fathersName}</td>
+        </tr>
+      ));
+
+      return (
+        <Table responsive striped bordered hover>
+          {tableHeader}
+          <tbody>{tableRows}</tbody>
+        </Table>
+      );
+    }
+  };
 
   return (
-    <div>
-      <h1>DashBoard</h1>
-      <table style={{ border: '1px solid #000' }}>
-        {tableHeader}
-        <tbody>{tableRows}</tbody>
-      </table>
+    <div className="container mt-5">
+      <h1 className="text-center mb-4 display-4 font-weight-bold">Individual Dashboard</h1>
+      {renderTable()}
     </div>
   );
 }

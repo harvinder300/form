@@ -7,9 +7,9 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-function Indvidual() {
+function Indvidual({ consumerType }) {
     const [formData, setFormData] = useState({
-        consumerType: '',
+        consumerType,
         title: '',
         firstName: '',
         middleName: '',
@@ -26,6 +26,12 @@ function Indvidual() {
         const { name, value } = event.target;
         console.log('Input Name:', name);
         console.log('Input Value:', value);
+        if (name === 'firstName' || name === 'middleName' || name === 'lastName' || name === 'FathersName') {
+            if (!/^[a-zA-Z\s.]*$/.test(value)) {
+                toast.error('Only alphabetic characters and spaces are allowed in this field.');
+                return;
+            }
+        }
         setFormData({ ...formData, [name]: value });
     };
 
@@ -50,7 +56,7 @@ function Indvidual() {
         setTitleTypeValid(true); // Reset title validation state
     };
     const handleSubmit = async (event) => {
-            debugger
+
         event.preventDefault();
 
         const isFormValid = () => {
@@ -85,7 +91,7 @@ function Indvidual() {
                     method: 'POST',
                     body: JSON.stringify(formData), // Serialize formData as JSON
                     headers: {
-                      'Content-Type': 'application/json', // Set content-type to JSON
+                        'Content-Type': 'application/json', // Set content-type to JSON
                     },
                 });
                 if (response.ok) {
@@ -111,20 +117,20 @@ function Indvidual() {
             <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col md={6}>
-                        <Form.Group className={`mb-3 `}>
+                        {/* <Form.Group className={`mb-3 `}>
                             <Form.Label>Consumer Type</Form.Label>
                             <Form.Select
                                 name="consumerType"
                                 value={formData.consumerType}
                                 onChange={handleConsumerTypeChange}
                                 required
-                            >
-                                <option value="">Choose...</option>
+                            > */}
+                        {/* <option value="">Choose...</option>
                                 <option value="Individual">Individual</option>
                                 <option value="Firm/Trust/Company">Firm/Trust/Company</option>
-                            </Form.Select>
-                            {/* {!consumerTypeValid && <Form.Control.Feedback type="invalid">Please select a valid consumer type.</Form.Control.Feedback>} */}
-                        </Form.Group>
+                            </Form.Select> */}
+                        {/* {!consumerTypeValid && <Form.Control.Feedback type="invalid">Please select a valid consumer type.</Form.Control.Feedback>} */}
+                        {/* </Form.Group> */}
                         {/* Upload   */}
                         {/* <Form.Group className="mb-3" style={{ display: 'grid', alignItems: 'flex-end' }}> */}
                         {/* <div style={{ marginLeft: '1000px' }}>
@@ -243,13 +249,13 @@ function Indvidual() {
                             name="FathersName" // Add the name attribute
                             value={formData.FathersName}
                             onChange={handleInputChange}
-                            
+
                         />
                     </Form.Group>
                 </Row>
                 {/*Fathers and husbands name */}
                 <div className="d-grid" style={{ width: '100px' }}>
-                    <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    <Button variant="dark" type="submit" onClick={handleSubmit}>
                         Submit
                     </Button>
                 </div>
