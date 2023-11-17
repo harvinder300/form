@@ -15,10 +15,11 @@ function TopNavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {/* Use the Link component to navigate to "/consumer-info" */}
+              {/* Use the Link component to navigate to the landing page */}
               <Link to="/consumer-info" style={{ textDecoration: 'none' }}>
-                 <Nav.Link href='http://localhost:3000/consumer-info'>Home</Nav.Link>
+                <Nav.Link href="/consumer-info">Home</Nav.Link>
               </Link>
+
               <Nav.Link href="#about">About Us</Nav.Link>
               <Nav.Link href="#regulatory">Regulatory & Compliance</Nav.Link>
               <Nav.Link href="#news">News & Media</Nav.Link>
@@ -31,20 +32,5 @@ function TopNavBar() {
     </Card>
   );
 }
-/*
- <Button
-                    variant="primary"
-                    as={Link} // Use Link to navigate
-                    to="/consumer-info"
-                    size="sm"
-                    style={{
-                      height: '30px',
-                      width: '100px',
-                      marginTop: '13px',
-                      marginRight: '10px',
-                    }}
-                  >
-                    Consumer Info
-                  </Button>
-*/
+
 export default TopNavBar;

@@ -13,7 +13,6 @@ function FirmTrust({ consumerType }) {
         typeOfOrganization: '',
         dateOfIncorporation: '',
         gstNumber: '',
-
         panRequired: '',
     });
 

@@ -7,6 +7,10 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
+import { FormControl, useFormControlContext } from '@mui/base/FormControl';
+import { Input, inputClasses } from '@mui/base/Input';
+import { styled } from '@mui/system';
+import clsx from 'clsx';
 function Indvidual({ consumerType }) {
     const [formData, setFormData] = useState({
         consumerType,
