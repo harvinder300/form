@@ -14,10 +14,13 @@ import './App.css';
 import Logo from './Bses.png';
 import axios from 'axios';
 import Adress from './Component/Adress';
-import ConnectionDetailsTemporary from './Component/ConnectionDetailsTemporary';
+import ConnectionDetailsPermanent from './Component/ConnectionDetailsPermanent';
 import AppointmentSchedule from './Component/Appointment';
 import SelfDeclaration from './Component/SelfDeclaration'
-import ImportantDocuments from './Component/ImportantDocument'
+import ImportantDocument from './Component/ImportantDocument';
+import DocumentCheckList from './Component/DocumentCheckList'
+import ConnectionDetailsTemporary from './Component/ConnectionDetailsTemporary';
+
 function App() {
   const handleApplyButtonClick = async () => {
     try {
@@ -81,7 +84,7 @@ function App() {
                     Dashboard Firm
                   </Button>
                 </div>
-              </Card>
+              </Card> 
             </div>
             <div className="App" style={{ display: 'flex', justifyContent: 'center', margin: '15px' }}>
               <Card className="shadow-lg" style={{ width: '1500px' }}>
@@ -101,7 +104,7 @@ function App() {
               </Card>
             </div> */}
             {/* <Card><Adress/></Card> */}
-            <Card><ImportantDocuments/></Card>
+            <Card > <DocumentCheckList/></Card>
            </div>
         </Container>
                   
