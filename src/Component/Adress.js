@@ -7,7 +7,7 @@ import { Card } from 'react-bootstrap';
 function Adress() {
     return (
         <Form className="mt-2" >
-            <Card style={{ marginLeft: '10px', marginRight: '10px' }}>
+            <Card style={{ marginLeft: '10px', marginRight: '35px' }}>
                 <Form.Label style={{ marginTop: '1px' }}><img src={Landmark} style={{ marginTop: '5px' }} alt="Landmark Image" /><strong> Address</strong></Form.Label></Card>
             <Row className="mb-3">\
                 <div style={{ marginLeft: '9px', marginTop: '1px' }}>
@@ -19,7 +19,7 @@ function Adress() {
                         <Form.Control type="text" placeholder="House No./Property No." />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formFloor">
+                    <Form.Group style={{width:'1425px'}} as={Col} controlId="formFloor">
                         <Form.Label>Floor</Form.Label>
                         <Form.Select defaultValue="Choose...">
                             <option>Choose...</option>
@@ -28,7 +28,7 @@ function Adress() {
                     </Form.Group>
                 </div>
             </Row>
-            <div style={{ marginLeft: '10px',width:'1500px' }}>
+            <div style={{ marginLeft: '10px',width:'1475px' }}>
                 <Form.Group className="mb-3" controlId="formBuildingName">
                     <Form.Label>Building Name</Form.Label>
                     <Form.Control />
@@ -59,7 +59,7 @@ function Adress() {
                     </Form.Group>
 
 
-                    <Form.Group as={Col} controlId="formPostalCode">
+                    <Form.Group style={{marginRight:'30px'}} as={Col} controlId="formPostalCode">
                         <Form.Label>City Postal Code</Form.Label>
                         <Form.Control />
                     </Form.Group>
@@ -96,7 +96,7 @@ function Adress() {
                         <Form.Control type="text" placeholder="House No./Property No." />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formFloor">
+                    <Form.Group style={{width:'1425px'}} as={Col} controlId="formFloor">
                         <Form.Label>Floor</Form.Label>
                         <Form.Select defaultValue="Choose...">
                             <option>Choose...</option>
@@ -106,7 +106,7 @@ function Adress() {
                 </div>
             </Row>
 
-            <div style={{ marginLeft: '10px',width:'1500px' }}>
+            <div style={{ marginLeft: '10px',width:'1475px' }}>
                 <Form.Group className="mb-3" controlId="formBuildingName">
                     <Form.Label>Building Name</Form.Label>
                     <Form.Control />
@@ -137,7 +137,7 @@ function Adress() {
                     </Form.Group>
 
 
-                    <Form.Group as={Col} controlId="formPostalCode">
+                    <Form.Group style={{marginRight:'30px'}} as={Col} controlId="formPostalCode">
                         <Form.Label>City Postal Code</Form.Label>
                         <Form.Control />
                     </Form.Group>

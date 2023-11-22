@@ -36,7 +36,7 @@ function ConnectionDetailsPermanent() {
             <Form>
                 <h5 style={{ marginBottom: '20px', marginTop: '10px', color: '#333' }}>
                     <img src={ConnectionLogo} alt="Connection Logo" style={{ marginRight: '2px', marginLeft: '5px' }} />
-                    Connection Details For Permanent
+                    Connection Details
                 </h5>
 
                 <FormControl component="fieldset" style={{ marginBottom: '20px' }}>

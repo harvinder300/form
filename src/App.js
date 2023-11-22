@@ -20,7 +20,8 @@ import SelfDeclaration from './Component/SelfDeclaration'
 import ImportantDocument from './Component/ImportantDocument';
 import DocumentCheckList from './Component/DocumentCheckList'
 import ConnectionDetailsTemporary from './Component/ConnectionDetailsTemporary';
-
+import Dropdown from 'react-bootstrap/Dropdown'; // Add this import for the Dropdown component
+import { useState } from 'react';
 function App() {
   const handleApplyButtonClick = async () => {
     try {
@@ -34,23 +35,21 @@ function App() {
       console.error('Error inserting new connection record', error);
     }
   };
-
-
   return (
-    <Router>
-      <BackgroundImage imageUrl={backgroundImage} style={{ backgroundImage: 'cover' }}>
+    <div style={{ backgroundColor: '#FDE5D4' ,height: '200vh',overflow:'none' }}>
+      <Router>
         <Container fluid>
           <div>
             <Card>
-
 
             </Card>
             <image>
               <img src={Logo} style={{ marginLeft: '27px', width: '1000px', height: '100px' }} />
             </image>
           </div>
-          <div className="App">
-            {/* <div style={{ display: 'flex', justifyContent: 'center', margin: '15px' }}>
+          <Card>
+          <div  style={{backgroundColor:'#001524'}} className="App">
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '15px' }}>
               <Card className="shadow-lg" style={{ width: '1500px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <TopNavBar />
@@ -84,7 +83,7 @@ function App() {
                     Dashboard Firm
                   </Button>
                 </div>
-              </Card> 
+              </Card>
             </div>
             <div className="App" style={{ display: 'flex', justifyContent: 'center', margin: '15px' }}>
               <Card className="shadow-lg" style={{ width: '1500px' }}>
@@ -94,22 +93,46 @@ function App() {
                     <Card.Title>New Connection Form</Card.Title>
                     <Button onClick={handleApplyButtonClick}>Apply For New Connection</Button>
                   </div>
+
                   <Routes>
                     <Route path="/consumer-info" element={<ConsumerInfo />} />
                     <Route path="/dashboard-table" element={<DashBoardTable />} />
                     <Route path="/dashboard-firm" element={<DashBoardFirm />} />
+                    <Route path="/adress" element={<Adress />} />
+                    <Route path="/connection-details-permanent" element={<ConnectionDetailsPermanent />} />
+                    <Route path="/document-checklist" element={<DocumentCheckList />} />
+                    <Route path="/selfdeclaration" element={<SelfDeclaration />} />
+                    <Route path="/importantdocuments" element={<ImportantDocument />} />
                     <Route element={<ConsumerInfo />} />
                   </Routes>
                 </Card.Body>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px', marginRight: '15px', marginBottom: '5px' }}>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                      Other Section
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item as={Link} to="/adress">Adress</Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/connection-details-permanent">ConnectionDetails Permanent</Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/selfdeclaration">Self Declaration</Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/importantdocuments">Important Document</Dropdown.Item>
+                      <Dropdown.Item as={Link} to="/document-checklist">Document CheckList</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
               </Card>
-            </div> */}
+
+            </div>
             {/* <Card><Adress/></Card> */}
-            <Card > <DocumentCheckList/></Card>
-           </div>
+            {/* <Card > <ConnectionDetailsPermanent/></Card> */}
+          </div>
+          </Card>
         </Container>
-                  
-      </BackgroundImage>
-    </Router>
+
+
+      </Router>
+    </div>
   );
 }
 
